@@ -1,0 +1,272 @@
+openapi: 3.0.0
+info:
+  title: Jops API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://joyous-fox-dress.cyclic.app/api/v1
+  variables: {}
+- url: https://joyous-fox-dress.cyclic.app/api/v1/auth
+  variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: register
+      operationId: register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/registerrequest'
+              - example:
+                  name: ali
+                  email: ash1@gmail.com
+                  password: '147741'
+            example:
+              name: ali
+              email: ash1@gmail.com
+              password: '147741'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://joyous-fox-dress.cyclic.app/api/v1
+        variables: {}
+  /login:
+    post:
+      tags:
+      - Auth
+      summary: loginAPI
+      operationId: loginAPI
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/loginAPIRequest'
+              - example:
+                  email: ahmed@gmail.com
+                  password: '147741'
+            example:
+              email: ahmed@gmail.com
+              password: '147741'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: https://joyous-fox-dress.cyclic.app/api/v1/auth
+        variables: {}
+  /jobs:
+    post:
+      tags:
+      - Jobs
+      summary: createJob
+      operationId: createJob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createJob'
+              - {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: https://joyous-fox-dress.cyclic.app/api/v1
+        variables: {}
+    get:
+      tags:
+      - Jobs
+      summary: getAllJobs
+      operationId: getAllJobs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: https://joyous-fox-dress.cyclic.app/api/v1
+        variables: {}
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The job ID
+    get:
+      tags:
+      - Jobs
+      summary: getSingleJob
+      operationId: getSingleJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://joyous-fox-dress.cyclic.app/api/v1
+        variables: {}
+  
+    patch:
+      tags:
+      - Jobs
+      summary: updateJob
+      operationId: updateJob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateJobRequest'
+              - example:
+                  position: full stack
+                  company: netflix
+            example:
+              position: full stack
+              company: netflix
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://joyous-fox-dress.cyclic.app/api/v1
+        variables: {}
+    delete:
+      tags:
+      - Jobs
+      summary: deleteJob
+      operationId: deleteJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+      servers:
+      - url: https://joyous-fox-dress.cyclic.app/api/v1
+        variables: {}
+components:
+  schemas:
+    registerrequest:
+      title: registerrequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: ali
+        email: ash1@gmail.com
+        password: '147741'
+    updateJobRequest:
+      title: updateJobRequest
+      required:
+      - position
+      - company
+      type: object
+      properties:
+        position:
+          type: string
+        company:
+          type: string
+      example:
+        position: full stack
+        company: netflix
+    deleteJobRequest:
+      title: deleteJobRequest
+      required:
+      - position
+      - company
+      type: object
+      properties:
+        position:
+          type: string
+        company:
+          type: string
+      example:
+        position: full stack
+        company: netflix
+    loginAPIRequest:
+      title: loginAPIRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: ahmed@gmail.com
+        password: '147741'
+    createJob:
+      title: createJob
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      description: ''
+    getJob:
+      title: getJob
+      type: object
+      description: ''
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Misc
+  description: ''
+- name: Auth
+  description: ''
+- name: Jobs
+  description: ''
