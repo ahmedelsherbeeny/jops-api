@@ -92,6 +92,8 @@ paths:
           description: ''
           headers: {}
       deprecated: false
+      security:
+      - bearer: []
       servers:
       - url: https://joyous-fox-dress.cyclic.app/api/v1
         variables: {}
@@ -106,6 +108,8 @@ paths:
           description: ''
           headers: {}
       deprecated: false
+      security:
+      - bearer: []
       servers:
       - url: https://joyous-fox-dress.cyclic.app/api/v1
         variables: {}
